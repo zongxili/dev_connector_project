@@ -6,7 +6,9 @@ const db = config.get('mongoURI'); // get any value from the JSON file
 const connectDB = async () => { // when async, we should use try/catch
   try {
     await mongoose.connect(db, {
-      useNewUrlParser: true
+      useNewUrlParser: true,
+      useCreateIndex: true,
+      useUnifiedTopology: true
     });
     console.log('MongoDB Connected...');
   } catch (err) {
