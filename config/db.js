@@ -3,8 +3,6 @@ const config = require('config');
 
 const db = config.get('mongoURI'); // get any value from the JSON file
 
-// mongoose.connect(dbs)
-
 const connectDB = async () => { // when async, we should use try/catch
   try {
     await mongoose.connect(db, {

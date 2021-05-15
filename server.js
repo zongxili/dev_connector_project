@@ -12,7 +12,7 @@ app.use(express.json({exteneded: false}));
 
 app.get('/', (req, res) => res.send('API Running'));
 
-// Define Routes
+// Define Routes: if the DB receives requests, it will go to the specific functions as below
 app.use('/api/users', require('./routes/api/users'));
 app.use('/api/auth', require('./routes/api/auth'));
 app.use('/api/profile', require('./routes/api/profile'));

@@ -7,7 +7,7 @@ const { check, validationResult } = require('express-validator/check');
 // @access Public
 router.post('/', [
   check('name', 'Name is required')
-  .not()
+  .not() // they are the default methods from express-validator/check
   .isEmpty(),
   check(
     'email',
@@ -18,12 +18,12 @@ router.post('/', [
   ).isLength({min: 6})
 ], (req, res)=> {
   const errors = validationResult(req);
-  if(!errors.isEmpty()){
+  if(!errors.isEmpty()){ // only if the response returns errors
     return res.status(400).json({
       errors: errors.array()
     });
   }
-  res.send('Users Route')
+  res.send('Users Route') // if no errors, the reponse should be this text
 });
 
 module.exports = router;
