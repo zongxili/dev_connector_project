@@ -6,4 +6,6 @@ const router = express.Router();
 // @access Public
 router.get('/', (req, res)=> res.send('Users Route'));
 
+// Register the users
+
 module.exports = router;
