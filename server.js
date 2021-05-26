@@ -1,5 +1,4 @@
 const express = require('express');
-
 const connectDB = require('./config/db');
 
 const app = express();
@@ -8,7 +7,7 @@ const app = express();
 connectDB();
 
 // Init Middleware
-app.use(express.json({exteneded: false}));
+app.use(express.json({ exteneded: false }));
 
 app.get('/', (req, res) => res.send('API Running'));
 
