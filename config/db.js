@@ -17,5 +17,5 @@ const connectDB = async () => { // when async, we should use try/catch
     process.exit(1);
   }
 }
-
+sadfsd
 module.exports = connectDB;
