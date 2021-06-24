@@ -72,5 +72,4 @@ router.post('/', [
   res.send('Hello');
 });
 
-
 module.exports = router;
