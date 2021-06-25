@@ -22,8 +22,8 @@ router.get('/me', auth, async (req, res) => {
   }
 });
 
-// @route  Post api/profile/profile
-// @desc   Create or update User's profile
+// @route  Post api/profile
+// @desc   Create or update an User's profile
 // @access Private
 router.post('/', [
   auth,
@@ -64,12 +64,41 @@ router.post('/', [
   if (status) profileFields.status = status;
   if (githubusername) profileFields.githubusername = githubusername;
   if (skills) {
-    profileFields.skills = skills.split(',').map(skill => skikk.trim());
+    profileFields.skills = skills.split(',').map(skill => skill.trim());
   }
 
-  console.log(skills);
+  // Build Social object
+  profileFields.social = {}
+  if (youtube) profileFields.social.youtube = youtube;
+  if (facebook) profileFields.social.facebook = facebook;
+  if (twitter) profileFields.social.twitter = twitter;
+  if (instagram) profileFields.social.instagram = instagram;
+  if (linkedin) profileFields.social.linkedin = linkedin;
 
-  res.send('Hello');
+  console.log(profileFields.skills);
+  console.log(profileFields.social);
+
+  // Update/Insert the data
+  try {
+    let profile = await Profile.findOne({ user: req.user.id });
+    if (profile) {
+      // if there is a profile, then udpate it
+      profile = await Profile.findOneAndUpdate(
+        { user: req.user.id },
+        { $set: profileFields },
+        { new: true }
+      );
+      return res.json(profile);
+    }
+
+    // If there isn't a profile, then CREATE one
+    profile = new Profile(profileFields);
+    await profile.save();
+    res.json(profile);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server Error');
+  }
 });
 
 module.exports = router;
