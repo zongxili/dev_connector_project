@@ -5,6 +5,8 @@ const Profile = require('../../models/Profile');
 const User = require('../../models/User');
 const { check, validationResult } = require('express-validator');
 const { route } = require('./users');
+const request = require('request');
+const config = require('config');
 
 // @route  GET api/profile/me
 // @desc   Get current User's profile
@@ -285,5 +287,20 @@ router.delete('/education/:edu_id', auth, async (req, res) => {
     res.status(500).send('Server Error');
   }
 });
+
+// @route  GET api/profile/github/:username
+// @desc   Get user repos from Github
+// @access Public
+router.get('/github/:username', async (req, res) => {
+  try {
+    const options = {
+      uri: ``
+    }
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server Error');
+  }
+});
+
 
 module.exports = router;
