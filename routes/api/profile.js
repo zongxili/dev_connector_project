@@ -302,8 +302,8 @@ router.get('/github/:username', async (req, res) => {
 
     request(options, (error, response, body) => {
       if (error) console.error(error);
-      if (response.stateCode !== 200) {
-        res.status(404).json({ msg: 'No Github profile found' });
+      if (response.statusCode !== 200) {
+        return res.status(404).json({ msg: 'No Github profile found' });
       }
       // if it is found
       res.json(JSON.parse(body)); // without JSON.parse, it will be a regular string with escaped code
@@ -313,6 +313,5 @@ router.get('/github/:username', async (req, res) => {
     res.status(500).send('Server Error');
   }
 });
-
 
 module.exports = router;
