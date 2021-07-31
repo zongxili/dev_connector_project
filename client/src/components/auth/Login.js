@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 const Login = () => {
   const [formData, setFormData] = useState({
     email: '',
-    password: '',
+    password: ''
   });
 
   const onCharge = e => setFormData({ ...formData, [e.target.name]: e.target.value }); // by doing this, the target will be as same as the name
