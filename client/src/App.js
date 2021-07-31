@@ -18,7 +18,6 @@ const App = () => (
           <Route exact path="/login" component={Login} />
         </Switch>
       </section>
-      <Landing />
     </Fragment>
   </ Router >
 );
