@@ -7,4 +7,6 @@ export const setAlert = (msg, alertType) => dispatch => {
     type: SET_ALERT,
     payload: { msg, alertType, id }
   });
+  // (() => {}); means taking in a function
+  setTimeout(() => dispatch({ type: REMOVE_ALERT, payload: id }), 5000);
 };
