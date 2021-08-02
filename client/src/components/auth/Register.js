@@ -88,6 +88,7 @@ const Register = ({ setAlert }) => {
 };
 
 Register.propTypes = {
+  // ptfr for PropTypes.func.isRequired
   setAlert: PropTypes.func.isRequired
 }
 
