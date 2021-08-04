@@ -33,12 +33,13 @@ const Register = ({ setAlert, register }) => {
       <p className='lead'><i className='fas fa-user'></i> Create Your Account</p>
       <form className='form' onSubmit={e => onSubmit(e)}>
         <div className='form-group'>
-          <input type='text'
+          <input
+            type='text'
             placeholder='Name'
             name='name'
             value={name}
             onChange={e => onCharge(e)}
-            required
+          // required
           />
         </div>
         <div className='form-group'>
@@ -48,7 +49,7 @@ const Register = ({ setAlert, register }) => {
             name='email'
             value={email}
             onChange={e => onCharge(e)}
-            required
+          // required
           />
           <small className='form-text'>
             This site uses Gravatar so if you want a profile image, use a Gravatar email
@@ -59,9 +60,9 @@ const Register = ({ setAlert, register }) => {
             type='password'
             placeholder='Password'
             name='password'
-            minLength='6'
             value={password}
             onChange={e => onCharge(e)}
+          // minLength='6'
           />
         </div>
         <div className='form-group'>
@@ -69,9 +70,9 @@ const Register = ({ setAlert, register }) => {
             type='password'
             placeholder='Confirm Password'
             name='password2'
-            minLength='6'
             value={password2}
             onChange={e => onCharge(e)}
+          // minLength='6'
           />
         </div>
         <input

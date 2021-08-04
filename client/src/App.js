@@ -14,17 +14,17 @@ const App = () => (
   <Provider store={store}>
     <Router>
       <Fragment>
-        <Navbar />
+        <Navbar /> {/* the Navbar will be shown for all components */}
+        {/* exact means the URL exactly matches but not containing */}
         <Route exact path='/' component={Landing} />
         <section className="container">
           <Alert />
-          <Switch>
+          <Switch> {/* this component makes sure only one Route shown only one time */}
             <Route exact path="/register" component={Register} />
             {/* component is not same as path
               component can be a 404 component
               route can go to different paths but same component 
             */}
-
             <Route exact path="/login" component={Login} />
           </Switch>
         </section>
