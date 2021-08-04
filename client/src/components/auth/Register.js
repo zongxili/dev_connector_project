@@ -13,9 +13,13 @@ const Register = ({ setAlert, register }) => {
     password2: '',
   });
 
-  const { name, email, password, password2 } = formData;
+  const { name, email, password, password2 } = formData; // pull the info from 'formData' object
 
-  const onCharge = e => setFormData({ ...formData, [e.target.name]: e.target.value }); // by doing this, the target will be as same as the name
+  const onCharge = e => setFormData({ ...formData, [e.target.name]: e.target.value });
+  // by doing this, the target will be as same as the name
+  // Why put e.target.name in brackets? 
+  // This is to dynamically update object property (when the name of the property is unknown upfront but runtime).
+  // e means event
 
   const onSubmit = async e => {
     e.preventDefault();
