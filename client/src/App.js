@@ -20,6 +20,11 @@ const App = () => (
           <Alert />
           <Switch>
             <Route exact path="/register" component={Register} />
+            {/* component is not same as path
+              component can be a 404 component
+              route can go to different paths but same component 
+            */}
+
             <Route exact path="/login" component={Login} />
           </Switch>
         </section>
