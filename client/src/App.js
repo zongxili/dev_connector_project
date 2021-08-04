@@ -15,6 +15,7 @@ const App = () => (
     <Router>
       <Fragment>
         <Navbar /> {/* the Navbar will be shown for all components */}
+        {/* exact means the URL exactly matches but not containing */}
         <Route exact path='/' component={Landing} />
         <section className="container">
           <Alert />
