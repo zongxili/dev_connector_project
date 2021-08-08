@@ -6,6 +6,7 @@ const Navbar = () => {
     <nav className='navbar bg-dark'>
       <h1>
         <Link to='/'>
+          {/* it doesn't send a request to the server but just looks at the URL path */}
           <i className='fas fa-code' />DevConnector
         </Link>
       </h1>
