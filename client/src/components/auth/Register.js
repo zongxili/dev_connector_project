@@ -1,4 +1,5 @@
 import React, { Fragment, useState } from 'react';
+import axios from 'axios';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { setAlert } from '../../actions/alert';
@@ -53,7 +54,7 @@ const Register = ({ setAlert, register }) => {
             name='email'
             value={email}
             onChange={e => onCharge(e)}
-          // required
+            required
           />
           <small className='form-text'>
             This site uses Gravatar so if you want a profile image, use a Gravatar email
@@ -66,7 +67,7 @@ const Register = ({ setAlert, register }) => {
             name='password'
             value={password}
             onChange={e => onCharge(e)}
-          // minLength='6'
+            minLength='6'
           />
         </div>
         <div className='form-group'>
@@ -76,7 +77,7 @@ const Register = ({ setAlert, register }) => {
             name='password2'
             value={password2}
             onChange={e => onCharge(e)}
-          // minLength='6'
+            minLength='6'
           />
         </div>
         <input

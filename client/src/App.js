@@ -1,36 +1,48 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Navbar from './components/layout/Navbar';
 import Landing from './components/layout/Landing';
 import Login from './components/auth/Login';
 import Register from './components/auth/Register';
 import Alert from './components/layout/Alert';
-// Redux
-import { Provider } from 'react-redux';
+import { Provider } from 'react-redux'; // Redux
 import store from './store';
+import { loadUser } from './actions/auth';
 import './App.css';
+import setAuthToken from './utils/setAuthToken';
 
-const App = () => (
-  <Provider store={store}>
-    <Router>
-      <Fragment>
-        <Navbar /> {/* the Navbar will be shown for all components */}
-        {/* exact means the URL exactly matches but not containing */}
-        <Route exact path='/' component={Landing} />
-        <section className="container">
-          <Alert />
-          <Switch> {/* this component makes sure only one Route shown only one time */}
-            <Route exact path="/register" component={Register} />
-            {/* component is not same as path
+if (localStorage.token) {
+  setAuthToken(localStorage.token);
+}
+
+const App = () => {
+
+  useEffect(() => {
+    store.dispatch(loadUser());
+  }, []);
+
+  return (
+    <Provider store={store}>
+      <Router>
+        <Fragment>
+          <Navbar /> {/* the Navbar will be shown for all components */}
+          {/* exact means the URL exactly matches but not containing */}
+          <Route exact path='/' component={Landing} />
+          <section className="container">
+            <Alert />
+            <Switch> {/* this component makes sure only one Route shown only one time */}
+              <Route exact path="/register" component={Register} />
+              {/* component is not same as path
               component can be a 404 component
               route can go to different paths but same component 
             */}
-            <Route exact path="/login" component={Login} />
-          </Switch>
-        </section>
-      </Fragment>
-    </ Router >
-  </Provider>
-);
+              <Route exact path="/login" component={Login} />
+            </Switch>
+          </section>
+        </Fragment>
+      </ Router >
+    </Provider>
+  )
+};
 
 export default App;
