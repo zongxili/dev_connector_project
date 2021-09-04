@@ -1,5 +1,4 @@
 import React, { Fragment, useState } from 'react';
-import axios from 'axios';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { setAlert } from '../../actions/alert';
@@ -29,6 +28,7 @@ const Register = ({ setAlert, register }) => {
       setAlert('Passwords do not match', 'danger');
     } else {
       register({ name, email, password });
+      // console.log('SUCCESS');
     }
   };
 
