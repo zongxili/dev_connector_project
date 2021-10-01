@@ -44,7 +44,7 @@ const Register = ({ setAlert, register }) => {
             name='name'
             value={name}
             onChange={e => onCharge(e)}
-          // required
+            required
           />
         </div>
         <div className='form-group'>
@@ -99,5 +99,7 @@ Register.propTypes = {
   register: PropTypes.func.isRequired
 }
 
-export default connect(null,
-  { setAlert, register })(Register);
+export default connect(
+  null,
+  { setAlert, register }
+)(Register);

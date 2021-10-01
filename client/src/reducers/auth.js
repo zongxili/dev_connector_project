@@ -1,3 +1,4 @@
+/* eslint-disable import/no-anonymous-default-export */
 import {
   REGISTER_SUCCESS,
   REGISTER_FAIL,
@@ -10,7 +11,7 @@ const initialState = {
   isAuthenticated: null, // will turn 'true' once the user successfully logins in
   loading: true, // we want to make sure we have got a response to BackEnd and it is done
   user: null
-}
+};
 
 export default function (state = initialState, action) { // this way we X need to put all the info as parameters
   const { type, payload } = action;
@@ -43,4 +44,4 @@ export default function (state = initialState, action) { // this way we X need t
     default:
       return state;
   }
-}
+};
