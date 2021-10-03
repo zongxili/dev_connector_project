@@ -1,8 +1,12 @@
+/* eslint-disable import/no-anonymous-default-export */
 import {
   REGISTER_SUCCESS,
   REGISTER_FAIL,
   USER_LOADED,
-  AUTH_ERROR
+  AUTH_ERROR,
+  LOGIN_SUCCESS,
+  LOGIN_FAIL,
+  LOGOUT
 } from '../actions/types';
 
 const initialState = {
@@ -10,7 +14,7 @@ const initialState = {
   isAuthenticated: null, // will turn 'true' once the user successfully logins in
   loading: true, // we want to make sure we have got a response to BackEnd and it is done
   user: null
-}
+};
 
 export default function (state = initialState, action) { // this way we X need to put all the info as parameters
   const { type, payload } = action;
@@ -24,6 +28,7 @@ export default function (state = initialState, action) { // this way we X need t
         user: payload
       }
     case REGISTER_SUCCESS:
+    case LOGIN_SUCCESS:
       localStorage.setItem('token', payload.token);
       return {
         ...state,
@@ -33,6 +38,8 @@ export default function (state = initialState, action) { // this way we X need t
       }
     case REGISTER_FAIL:
     case AUTH_ERROR: // AUTH_ERROR does the same thing as REGISTER_FAIL
+    case LOGIN_FAIL:
+    case LOGOUT:
       localStorage.removeItem('token');
       return {
         ...state,
@@ -43,4 +50,4 @@ export default function (state = initialState, action) { // this way we X need t
     default:
       return state;
   }
-}
+};
