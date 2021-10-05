@@ -16,7 +16,6 @@ const initialState = {
   user: null
 };
 
-
 export default function (state = initialState, action) { // this way we X need to put all the info as parameters
   const { type, payload } = action;
 
