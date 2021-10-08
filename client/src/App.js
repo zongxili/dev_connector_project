@@ -5,6 +5,7 @@ import Landing from './components/layout/Landing';
 import Login from './components/auth/Login';
 import Register from './components/auth/Register';
 import Alert from './components/layout/Alert';
+import Dashboard from './components/dashboard/Dashboard';
 import { Provider } from 'react-redux'; // Redux
 import store from './store';
 import { loadUser } from './actions/auth';
@@ -37,6 +38,7 @@ const App = () => {
               route can go to different paths but same component 
             */}
               <Route exact path="/login" component={Login} />
+              <Route exact path="/dashboard" component={Dashboard} />
             </Switch>
           </section>
         </Fragment>
