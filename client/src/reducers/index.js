@@ -7,5 +7,6 @@ import profile from './profile';
 export default combineReducers({
   // this variable will be showed up in the Inspect Redux Plugin 
   alert,
-  auth
+  auth,
+  profile
 });
