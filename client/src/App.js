@@ -40,8 +40,15 @@ const App = () => {
               route can go to different paths but same component 
             */}
               <Route exact path="/login" component={Login} />
-              <PrivateRoute exact path="/dashboard" component={Dashboard} />
-              <PrivateRoute exact path="/create-profile" component={CreateProfile} />
+              <PrivateRoute exact
+                path="/dashboard"
+                component={Dashboard}
+              />
+              <PrivateRoute
+                exact
+                path="/create-profile"
+                component={CreateProfile}
+              />
             </Switch>
           </section>
         </Fragment>
