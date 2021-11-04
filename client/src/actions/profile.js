@@ -24,6 +24,7 @@ export const getCurrentProfile = () => async dispatch => {
   }
 };
 
+
 // Create or update profile
 // @history: redirect to the Client-Side Route after users submit the form
 export const createProfile = (formData, history, edit = false) => async dispatch => {
