@@ -317,14 +317,17 @@ router.get('/github/:username', async (req, res) => {
   }
 });
 
-// @route  PUT api/profile/experience
-// @desc   Add profile experience
+// @route  PUT api/profile/education
+// @desc   Add profile education
 // @access Private
-router.put('/experience', [auth, [
-  check('title', 'Title is required')
+router.put('/education', [auth, [
+  check('school', 'School is required')
     .not()
     .isEmpty(),
-  check('company', 'Company is required')
+  check('degree', 'Degree is required')
+    .not()
+    .isEmpty(),
+  check('fieldofstudy', 'Field of study is required')
     .not()
     .isEmpty(),
   check('from', 'Start Date is required')
@@ -337,19 +340,19 @@ router.put('/experience', [auth, [
   }
 
   const {
-    title,
-    company,
-    location,
+    school,
+    degree,
+    fieldofstudy,
     from,
     to,
     current,
     description
   } = req.body;
 
-  const newExp = {
-    title,
-    company,
-    location,
+  const newEdu = {
+    school,
+    degree,
+    fieldofstudy,
     from,
     to,
     current,
@@ -357,7 +360,7 @@ router.put('/experience', [auth, [
   }
   try {
     const profile = await Profile.findOne({ user: req.user.id });
-    profile.experience.unshift(newExp); // push to the beginning
+    profile.education.unshift(newEdu); // push to the beginning
     await profile.save();
     res.json(profile);
   } catch (err) {
@@ -366,16 +369,16 @@ router.put('/experience', [auth, [
   }
 });
 
-// @route  DELETE api/profile/experience/:exp_id
-// @desc   Delete experience from profile
+// @route  DELETE api/profile/education/:edu_id
+// @desc   Delete education from profile
 // @access Private
-router.delete('/experience/:exp_id', auth, async (req, res) => {
+router.delete('/education/:edu_id', auth, async (req, res) => {
   try {
     const profile = await Profile.findOne({ user: req.user.id });
 
     // Get remove index
-    const removeIndex = profile.experience.map(item => item.id).indexOf(req.params.exp_id);
-    profile.experience.splice(removeIndex, 1);
+    const removeIndex = profile.education.map(item => item.id).indexOf(req.params.edu_id);
+    profile.education.splice(removeIndex, 1);
     // resaving it
     await profile.save();
     res.json(profile);
