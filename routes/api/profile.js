@@ -345,7 +345,6 @@ router.put('/education', [auth, [
     fieldofstudy,
     from,
     to,
-    current,
     description
   } = req.body;
 
@@ -355,7 +354,6 @@ router.put('/education', [auth, [
     fieldofstudy,
     from,
     to,
-    current,
     description
   }
   try {
