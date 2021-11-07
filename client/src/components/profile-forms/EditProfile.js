@@ -31,7 +31,8 @@ const EditProfile = ({ profile: { profile, loading }, createProfile, getCurrentP
         website: loading || !profile.website ? "" : profile.website,
         location: loading || !profile.location ? "" : profile.location,
         status: loading || !profile.status ? "" : profile.status,
-        skills: loading || !profile.skills ? "" : profile.skills,
+        skills: loading || !profile.skills ? '' : profile.skills.join(','),
+
         githubusername:
           loading || !profile.githubusername ? "" : profile.githubusername,
         bio: loading || !profile.bio ? "" : profile.bio,
@@ -63,7 +64,7 @@ const EditProfile = ({ profile: { profile, loading }, createProfile, getCurrentP
 
   const onSubmit = e => {
     e.preventDefault();
-    createProfile(formData, history);
+    createProfile(formData, history, true);
   };
 
   return (
