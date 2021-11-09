@@ -194,7 +194,8 @@ router.put('/experience', [auth, [
     to,
     current,
     description
-  }
+  };
+
   try {
     const profile = await Profile.findOne({ user: req.user.id });
     profile.experience.unshift(newExp); // push to the beginning
@@ -259,7 +260,7 @@ router.put('/education', [auth, [
     degree,
     fieldofstudy,
     from
-  }
+  };
 
   try {
     const profile = await Profile.findOne({ user: req.user.id });
