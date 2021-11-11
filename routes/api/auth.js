@@ -29,7 +29,7 @@ router.post('/', [
     'Please include a valid email').isEmail(),
   check(
     'password',
-    'Password is required'
+    'Password is required',
   ).exists() // in this case, emypt field is fine
 ],
   async (req, res) => {
