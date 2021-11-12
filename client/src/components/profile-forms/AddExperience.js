@@ -44,17 +44,27 @@ const AddExperience = props => {
         </div>
         <div className="form-group">
           <h4>From Date</h4>
-          <input type="date" name="from" value={from} checked={current} onChange={e => {
-            setFormData({ ...formData, current: !current });
-            toggleDisabled(!toDateDisabled);
-          }} />
+          <input type="date" name="from" value={from} onChange={e => onChange(e)} />
         </div>
         <div className="form-group">
-          <p><input type="checkbox" name="current" value={current} onChange={e => onChange(e)} />{' '}Current Job</p>
+          <p>
+            <input
+              type="checkbox"
+              name="current"
+              value={current}
+              checked={current}
+              onChange={e => {
+                setFormData({ ...formData, current: !current });
+                toggleDisabled(!toDateDisabled);
+              }}
+            />{' '}Current Job</p>
         </div>
         <div className="form-group">
           <h4>To Date</h4>
-          <input type="date" name="to" value={to} onChange={e => onChange(e)} disabled={toDateDisabled ? 'disabled' : ''} />
+          <input type="date" name="to" value={to}
+            onChange={e => onChange(e)}
+            disabled={toDateDisabled ? 'disabled' : ''}
+          />
         </div>
         <div className="form-group">
           <textarea
