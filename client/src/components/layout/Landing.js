@@ -7,6 +7,7 @@ const Landing = ({ isAuthenticated }) => {
   if (isAuthenticated) {
     return <Redirect to='/dashboard' />
   }
+
   return (
     <section className='landing'>
       <div className='dark-overlay'>
