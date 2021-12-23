@@ -54,10 +54,7 @@ const AddEducation = ({ addEducation, history }) => {
               name="current"
               value={current}
               checked={current}
-              onChange={e => {
-                setFormData({ ...formData, current: !current });
-                toggleDisabled(!toDateDisabled);
-              }}
+              onChange={() => setFormData({ ...formData, current: !current })}
             />{' '}Current Program</p>
         </div>
         <div className="form-group">
