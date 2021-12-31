@@ -3,6 +3,7 @@ const router = express.Router();
 const auth = require('../../middleware/auth');
 const Profile = require('../../models/Profile');
 const User = require('../../models/User');
+const Post = require('../../models/Post');
 const { check, validationResult } = require('express-validator');
 const { route } = require('./users');
 const request = require('request');
@@ -142,7 +143,8 @@ router.get('/user/:user_id', async (req, res) => {
 // @access Private
 router.delete('/', auth, async (req, res) => {
   try {
-    // @todo - remove users posts
+    // Remove users posts
+    await Post.deleteMany({ user: req.user.id });
     // Remove profile
     await Profile.findOneAndRemove({ user: req.user.id });
     // Remove user
@@ -226,72 +228,6 @@ router.delete('/experience/:exp_id', auth, async (req, res) => {
   }
 });
 
-// @route  PUT api/profile/education
-// @desc   Add profile experience
-// @access Private
-router.put('/education', [auth, [
-  check('school', 'School is required')
-    .not()
-    .isEmpty(),
-  check('degree', 'Degree is required')
-    .not()
-    .isEmpty(),
-  check('fieldofstudy', 'Feild of Study is required')
-    .not()
-    .isEmpty(),
-  check('from', 'Start Date is required')
-    .not()
-    .isEmpty()
-]], async (req, res) => {
-  const errors = validationResult(req);
-  if (!errors.isEmpty()) {
-    return res.status(400).json({ errors: errors.array() });
-  }
-
-  const {
-    school,
-    degree,
-    fieldofstudy,
-    from
-  } = req.body;
-
-  const newEdu = {
-    school,
-    degree,
-    fieldofstudy,
-    from
-  };
-
-  try {
-    const profile = await Profile.findOne({ user: req.user.id });
-    profile.education.unshift(newEdu); // push to the beginning
-    await profile.save();
-    res.json(profile);
-  } catch (err) {
-    console.error(err.message);
-    res.status(500).send('Server Error');
-  }
-});
-
-// @route  DELETE api/profile/education/:edu_id
-// @desc   Delete education from profile
-// @access Private
-router.delete('/education/:edu_id', auth, async (req, res) => {
-  try {
-    const profile = await Profile.findOne({ user: req.user.id });
-
-    // Get remove index
-    const removeIndex = profile.education.map(item => item.id).indexOf(req.params.edu_id);
-    profile.education.splice(removeIndex, 1);
-    // resaving it
-    await profile.save();
-    res.json(profile);
-  } catch (error) {
-    console.error(error.message);
-    res.status(500).send('Server Error');
-  }
-});
-
 // @route  GET api/profile/github/:username
 // @desc   Get user repos from Github
 // @access Public
@@ -346,6 +282,7 @@ router.put('/education', [auth, [
     fieldofstudy,
     from,
     to,
+    current,
     description
   } = req.body;
 
@@ -355,8 +292,10 @@ router.put('/education', [auth, [
     fieldofstudy,
     from,
     to,
+    current,
     description
-  }
+  };
+
   try {
     const profile = await Profile.findOne({ user: req.user.id });
     profile.education.unshift(newEdu); // push to the beginning
