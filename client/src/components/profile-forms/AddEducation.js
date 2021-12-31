@@ -27,7 +27,7 @@ const AddEducation = ({ addEducation, history }) => {
         Add Your Education
       </h1>
       <p className="lead">
-        <i className="fas fa-code-branch"></i>Add an education experience
+        <i className="fas fa-code-branch"></i>Add any education experience
       </p>
       <small>* = required field</small>
       <form className="form" onSubmit={e => {

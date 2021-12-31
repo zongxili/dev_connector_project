@@ -27,8 +27,7 @@ const AddExperience = ({ addExperience, history }) => {
         Add An Experience
       </h1>
       <p className="lead">
-        <i className="fas fa-code-branch"></i> Add any developer/programming
-        positions that you have had in the past
+        <i className="fas fa-code-branch"></i> Add any developer/programming positions that you have had in the past
       </p>
       <small>* = required field</small>
       <form className="form" onSubmit={e => {
