@@ -45,7 +45,12 @@ const AddEducation = ({ addEducation, history }) => {
         </div>
         <div className="form-group">
           <h4>From Date</h4>
-          <input type="date" name="from" value={from} onChange={e => onChange(e)} />
+          <input
+            type="date"
+            name="from"
+            value={from}
+            onChange={e => onChange(e)}
+          />
         </div>
         <div className="form-group">
           <p>
@@ -58,11 +63,14 @@ const AddEducation = ({ addEducation, history }) => {
                 setFormData({ ...formData, current: !current });
                 toggleDisabled(!toDateDisabled);
               }}
-            />{' '}Current Program</p>
+            />{' '}Current School</p>
         </div>
         <div className="form-group">
           <h4>To Date</h4>
-          <input type="date" name="to" value={to}
+          <input
+            type="date"
+            name="to"
+            value={to}
             onChange={e => onChange(e)}
             disabled={toDateDisabled ? 'disabled' : ''}
           />
