@@ -1,14 +1,21 @@
-import { GET_PROFILE, PROFILE_ERROR, CLEAR_PROFILE, UPDATE_PROFILE } from "../actions/types";
+import {
+  GET_PROFILE,
+  PROFILE_ERROR,
+  CLEAR_PROFILE,
+  UPDATE_PROFILE,
+  GET_PROFILES,
+  GET_REPOS
+} from "../actions/types";
 
 const initialState = {
   profile: null,
-  prfiles: [],
+  profiles: [],
   repos: [],
   loading: true,
   error: {}
 };
 
-export default function (state = initialState, action) {
+function profileReducer(state = initialState, action) {
   const { type, payload } = action;
 
   switch (type) {
@@ -17,6 +24,12 @@ export default function (state = initialState, action) {
       return {
         ...state,
         profile: payload,
+        loading: false
+      };
+    case GET_PROFILES:
+      return {
+        ...state,
+        profiles: payload,
         loading: false
       };
     case PROFILE_ERROR:
@@ -32,7 +45,16 @@ export default function (state = initialState, action) {
         repos: [],
         loading: false
       };
+    case GET_REPOS:
+      return {
+        ...state,
+        profile: null,
+        repos: [],
+        loading: false
+      };
     default:
       return state;
   }
 };
+
+export default profileReducer;
