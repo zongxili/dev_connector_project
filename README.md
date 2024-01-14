@@ -2,7 +2,7 @@
 
 ## Overview
 
-This project is owned by [Zongxi Li](https://www.linkedin.com/in/zongxi-li/) and has been developed  since March 2022.
+This project is owned by [Zongxi Li](https://www.linkedin.com/in/zongxi-li/) and has been developed  since December 2023.
 
 This is a social network app includes authentication, profiles, and forum posts built by React, Node.js, Express, Redux, and MongoDB.
 
